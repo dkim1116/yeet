@@ -10,17 +10,24 @@ class ImageList extends React.Component {
         this.props.fetchVideo();
     }
 
+    renderList() {
+        return this.props.videos.map(x => {
+            return <ImageDetail videoItem={x} />
+        })
+    }
+
     render() {
         return (
             <div>
                 <h3>Image List</h3>
-                <ImageDetail />
+                {this.renderList()}
             </div>
         );
     }
 }
 
 const mapStateToProps = (state) => {
+    console.log(state);
     return { videos: state.videos }
 }
 
