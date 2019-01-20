@@ -5,6 +5,11 @@ import { fetchPhoto } from '../../actions';
 import ImageDetail from './ImageDetail';
 
 class ImageList extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = { searchTerm: null };
+    }
 
     componentDidMount() {
         this.props.fetchPhoto();
@@ -26,8 +31,16 @@ class ImageList extends React.Component {
 
     render() {
         return (
-            <div>
-                <h3>Image List</h3>
+            <div className="ui raised segment">
+                <div className="ui red ribbon label">
+                    <i className="rocket icon"></i>
+                    Explore
+                </div>
+                <span>
+                    Retrieved for: 
+                    {this.state.searchTerm ? this.state.searchTerm : " Recent Uploads"}
+                </span>
+                <p></p>
                 <div className="ui three column grid">
                     {this.renderList()}
                 </div>

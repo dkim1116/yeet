@@ -9,7 +9,6 @@ const App = () => {
     return (
         <div className="ui container">
             <Header />
-            <h2>App!</h2>
             <SearchBar />
             <ImageList />
             <Footer />
