@@ -1,4 +1,4 @@
-import images from '../apis/images';
+import images from '../apis/flickr';
 import {
     FETCH_PHOTO
 } from './types';

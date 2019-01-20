@@ -13,22 +13,24 @@ class ImageList extends React.Component {
     renderList() {
         return this.props.photos.map(photo => {
             return (
-                <div className="item" key={photo.id} >
-                    <ImageDetail 
-                        farmId={photo.farm} 
-                        serverId={photo.server} 
-                        id={photo.id} 
-                        secret={photo.secret} />
-                </div>
+                <ImageDetail 
+                    key={photo.id}
+                    farmId={photo.farm} 
+                    serverId={photo.server} 
+                    id={photo.id} 
+                    secret={photo.secret} 
+                    title={photo.title}/>
             );
         })
     }
 
     render() {
         return (
-            <div className="ui celled list">
+            <div>
                 <h3>Image List</h3>
-                {this.renderList()}
+                <div className="ui three column grid">
+                    {this.renderList()}
+                </div>
             </div>
         );
     }

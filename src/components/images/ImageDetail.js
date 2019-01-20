@@ -7,13 +7,20 @@ const ImageDetail = (props) => {
     }
 
     return (
-        <div>
-            <img src={
-                imageSrcRef(
-                    props.id, 
-                    props.farmId,
-                    props.serverId,
-                    props.secret)} />
+        <div className="column">
+            <div className="ui fluid card">
+                <div className="image">
+                    <img src={
+                        imageSrcRef(
+                            props.id, 
+                            props.farmId,
+                            props.serverId,
+                            props.secret)} />
+                </div>
+                <div className="content">
+                    <h4>{props.title.slice(0,40)}</h4>
+                </div>
+            </div>
         </div>
     );
 }
