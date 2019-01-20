@@ -1,24 +1,32 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchVideo } from '../../actions';
+import { fetchPhoto } from '../../actions';
 
 import ImageDetail from './ImageDetail';
 
 class ImageList extends React.Component {
 
     componentDidMount() {
-        this.props.fetchVideo();
+        this.props.fetchPhoto();
     }
 
     renderList() {
-        return this.props.videos.map(x => {
-            return <ImageDetail videoItem={x} />
+        return this.props.photos.map(photo => {
+            return (
+                <div className="item" key={photo.id} >
+                    <ImageDetail 
+                        farmId={photo.farm} 
+                        serverId={photo.server} 
+                        id={photo.id} 
+                        secret={photo.secret} />
+                </div>
+            );
         })
     }
 
     render() {
         return (
-            <div>
+            <div className="ui celled list">
                 <h3>Image List</h3>
                 {this.renderList()}
             </div>
@@ -27,11 +35,10 @@ class ImageList extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state);
-    return { videos: state.videos }
+    return { photos: state.photos }
 }
 
 export default connect(
     mapStateToProps,
-    { fetchVideo } 
+    { fetchPhoto } 
 )(ImageList);
