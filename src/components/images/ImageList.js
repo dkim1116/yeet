@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchPhoto } from '../../actions';
+import { getRecent } from '../../actions';
 
 import ImageDetail from './ImageDetail';
 
@@ -12,7 +12,7 @@ class ImageList extends React.Component {
     }
 
     componentDidMount() {
-        this.props.fetchPhoto();
+        this.props.getRecent();
     }
 
     renderList() {
@@ -50,10 +50,10 @@ class ImageList extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    return { photos: state.photos }
+    return { photos: state.photos };
 }
 
 export default connect(
     mapStateToProps,
-    { fetchPhoto } 
+    { getRecent } 
 )(ImageList);
