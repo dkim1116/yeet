@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getRecent } from '../../actions';
 
+import SearchBar from '../SearchBar';
 import ImageDetail from './ImageDetail';
 
 class ImageList extends React.Component {
@@ -34,15 +35,23 @@ class ImageList extends React.Component {
             <div className="ui raised segment">
                 <div className="ui red ribbon label">
                     <i className="rocket icon"></i>
-                    Explore
+                    Exploratorium
                 </div>
-                <span>
-                    Retrieved for: 
-                    {this.state.searchTerm ? this.state.searchTerm : " Recent Uploads"}
-                </span>
-                <p></p>
-                <div className="ui three column grid">
-                    {this.renderList()}
+            
+                <div className="ui menu">
+                    <div className="item">
+                        Retrieved for: 
+                        {this.state.searchTerm ? this.state.searchTerm : " Recent Uploads"}
+                    </div>
+                    <div className="right item">
+                        <SearchBar />
+                    </div>
+                </div>
+                <div className="ui top attached tabular menu">
+                    <p></p>
+                    <div className="ui three column grid">
+                        {this.renderList()}
+                    </div>
                 </div>
             </div>
         );

@@ -19,10 +19,17 @@ class SearchBar extends React.Component {
         this.props.searchPhoto(this.state.searchTerm);
     }
 
+    onSearchFocus = () => {
+        
+    }
+
     render() {
         return (
-            <form className="ui" onSubmit={this.onSearchSubmit}>
-                <div className="ui search">
+            <form 
+                className="ui medium" 
+                onSubmit={this.onSearchSubmit}
+                onClick={this.onSearchFocus}>
+                <div className="ui fluid search">
                     <div className="ui icon input">
                         <input 
                             className="prompt" 
