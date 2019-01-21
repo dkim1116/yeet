@@ -2,11 +2,11 @@ import React from 'react';
 
 const Header = () => {
     return (
-        <div class="ui pointing menu">
-            <a class="active item">
+        <div className="ui pointing menu">
+            <a className="active item">
                 Home
             </a>
-            <a class="item">
+            <a className="item">
                 Yeets
             </a>
         </div>
