@@ -4,7 +4,7 @@ import {
     FLICKR_PUBLIC,
     FLICKR_FORMAT,
     FLICKR_TEXT
-} from './config';
+} from './constants';
 
 export const GetRecent = axios.create({
     baseURL: `https://api.flickr.com/services/rest/?method=flickr.photos.getRecent&api_key=${FLICKR_PUBLIC+FLICKR_FORMAT}`
