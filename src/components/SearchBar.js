@@ -10,17 +10,16 @@ class SearchBar extends React.Component {
     }
 
     onSearchChange = (event) => {
-        this.setState({ searchTerm: event.target.value})
+        var searchTerm = event.target.value;
+
+        this.setState({ searchTerm });
     }
 
     onSearchSubmit = (event) => {
         event.preventDefault();
 
         this.props.searchPhoto(this.state.searchTerm);
-    }
-
-    onSearchFocus = () => {
-        
+        this.props.onSearchSubmit(this.state.searchTerm);
     }
 
     render() {

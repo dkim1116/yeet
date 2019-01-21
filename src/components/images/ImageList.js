@@ -30,6 +30,10 @@ class ImageList extends React.Component {
         })
     }
 
+    onSearch = (searchTerm) => {
+        this.setState({ searchTerm });
+    }
+
     render() {
         return (
             <div className="ui raised segment">
@@ -44,7 +48,7 @@ class ImageList extends React.Component {
                         {this.state.searchTerm ? this.state.searchTerm : " Recent Uploads"}
                     </div>
                     <div className="right item">
-                        <SearchBar />
+                        <SearchBar onSearchSubmit={this.onSearch} />
                     </div>
                 </div>
                 <div className="ui top attached tabular menu">
