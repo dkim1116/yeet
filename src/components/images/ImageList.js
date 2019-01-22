@@ -8,8 +8,6 @@ import ImageDetail from './ImageDetail';
 class ImageList extends React.Component {
     constructor(props) {
         super(props);
-
-        this.state = { searchTerm: null };
     }
 
     componentDidMount() {
@@ -30,10 +28,6 @@ class ImageList extends React.Component {
         })
     }
 
-    onSearch = (searchTerm) => {
-        this.setState({ searchTerm });
-    }
-
     render() {
         return (
             <div className="ui raised segment">
@@ -45,10 +39,10 @@ class ImageList extends React.Component {
                 <div className="ui menu">
                     <div className="item">
                         Retrieved for: 
-                        {this.state.searchTerm ? this.state.searchTerm : " Recent Uploads"}
+                        {this.props.searchTerm ? this.props.searchTerm : " Recent Uploads"}
                     </div>
                     <div className="right item">
-                        <SearchBar onSearchSubmit={this.onSearch} />
+                        <SearchBar />
                     </div>
                 </div>
                 <div className="ui top attached tabular menu">
@@ -63,7 +57,7 @@ class ImageList extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    return { photos: state.photos };
+    return { photos: state.photos, searchTerm: state.searchTerm};
 }
 
 export default connect(
