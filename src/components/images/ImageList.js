@@ -28,7 +28,7 @@ class ImageList extends React.Component {
                     secret={photo.secret} 
                     title={photo.title}/>
             );
-        })
+        });
     }
 
     render() {
@@ -61,8 +61,12 @@ class ImageList extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    return { photos: state.photos, searchTerm: state.searchTerm, submitTerm: state.submitTerm };
-}
+    return { 
+        photos: state.photos, 
+        searchTerm: state.searchTerm, 
+        submitTerm: state.submitTerm 
+    };
+};
 
 const mapDispatchToProps = (dispatch) => ({
     getRecent: () => {
@@ -71,7 +75,7 @@ const mapDispatchToProps = (dispatch) => ({
     onSearchTermSubmit: (term) => {
         dispatch( onSearchTermSubmit(term) );
     }
-})
+});
 
 export default connect(
     mapStateToProps,

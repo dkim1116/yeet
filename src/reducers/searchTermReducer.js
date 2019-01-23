@@ -10,7 +10,7 @@ export const searchTermReducer = (state = '', action) => {
         default:
             return state;
     }
-}
+};
 
 export const submitTermReducer = (state = 'Recent Uploads', action) => {
     switch (action.type) {
@@ -19,4 +19,4 @@ export const submitTermReducer = (state = 'Recent Uploads', action) => {
         default:
             return state;
     }
-}
+};

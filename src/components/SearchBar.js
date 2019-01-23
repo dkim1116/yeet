@@ -50,8 +50,9 @@ const mapStateToProps = (state) => {
     return { 
         photos: state.photos, 
         searchTerm: state.searchTerm, 
-        submitTerm: state.submitTerm };
-}
+        submitTerm: state.submitTerm 
+    };
+};
 
 const mapDispatchToProps = (dispatch) => ({
     searchPhoto: (term) => {
@@ -60,9 +61,9 @@ const mapDispatchToProps = (dispatch) => ({
     onSearchTermChange: (term) => {
         dispatch( onSearchTermChange(term) );
     }
-})
+});
 
-export default connect
-(mapStateToProps,  
+export default connect(
+    mapStateToProps,  
     mapDispatchToProps
 )(SearchBar);
