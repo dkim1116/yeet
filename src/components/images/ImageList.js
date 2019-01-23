@@ -64,7 +64,16 @@ const mapStateToProps = (state) => {
     return { photos: state.photos, searchTerm: state.searchTerm, submitTerm: state.submitTerm };
 }
 
+const mapDispatchToProps = (dispatch) => ({
+    getRecent: () => {
+        dispatch( getRecent() );
+    },
+    onSearchTermSubmit: (term) => {
+        dispatch( onSearchTermSubmit(term) );
+    }
+})
+
 export default connect(
     mapStateToProps,
-    { getRecent, onSearchTermSubmit } 
+    mapDispatchToProps
 )(ImageList);
