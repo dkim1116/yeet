@@ -1,10 +1,27 @@
-import images from '../apis/images';
+import { GetRecent, SearchPhoto } from '../apis/flickr';
 import {
-    FETCH_PHOTO
+    GET_RECENT,
+    SEARCH_PHOTO,
+    HANDLE_SEARCH_TERM_CHANGE,
+    HANDLE_SEARCH_TERM_SUBMIT
 } from './types';
 
-export const fetchPhoto = () => async dispatch => {
-    const response = await images.get();
+export const getRecent = () => async dispatch => {
+    const response = await GetRecent.get();
 
-    dispatch({ type: FETCH_PHOTO, payload: response.data.photos.photo});
+    dispatch({ type: GET_RECENT, payload: response.data.photos.photo});
+};
+
+export const searchPhoto = (term) => async dispatch => {
+    const response = await SearchPhoto.get(term);
+
+    dispatch({ type: SEARCH_PHOTO, payload: response.data.photos.photo});
+};
+
+export const onSearchTermChange = (term) => dispatch => {
+    dispatch({ type: HANDLE_SEARCH_TERM_CHANGE, payload: term });
+};
+
+export const onSearchTermSubmit = (term) => dispatch => {
+    dispatch({ type: HANDLE_SEARCH_TERM_SUBMIT, payload: term });
 };

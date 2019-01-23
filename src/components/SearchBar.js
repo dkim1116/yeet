@@ -1,15 +1,69 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { 
+    searchPhoto, 
+    onSearchTermChange
+} from '../actions';
 
-const SearchBar = () => {
-    return (
-        <div className="ui loading search">
-            <div className="ui icon input">
-                <input className="prompt" type="text" placeholder="Search..." />
-                <i className="search icon"></i>
-            </div>
-            <div className="results"></div>
-        </div>
-    );
+class SearchBar extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    onSearchChange = (event) => {
+        event.preventDefault();
+
+        this.props.onSearchTermChange(event.target.value);
+    }
+
+    onSearchSubmit = (event) => {
+        event.preventDefault();
+
+        this.props.searchPhoto(this.props.searchTerm);
+    }
+
+    render() {
+        return (
+            <form 
+                className="ui medium" 
+                onSubmit={
+                    this.props.onSearchSubmit(this.props.submitTerm)
+                }>
+                <div className="ui fluid search">
+                    <div className="ui icon input">
+                        <input 
+                            className="prompt" 
+                            type="text" 
+                            placeholder="Search..." 
+                            onChange={this.onSearchChange}
+                            value={this.props.searchTerm}/>
+                        <i className="search icon"></i>
+                    </div>
+                    <div className="results"></div>
+                </div>
+            </form>
+        );
+    }
 }
 
-export default SearchBar;
+const mapStateToProps = (state) => {
+    return { 
+        photos: state.photos, 
+        searchTerm: state.searchTerm, 
+        submitTerm: state.submitTerm 
+    };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+    searchPhoto: (term) => {
+        dispatch( searchPhoto(term) );
+    },
+    onSearchTermChange: (term) => {
+        dispatch( onSearchTermChange(term) );
+    }
+});
+
+export default connect(
+    mapStateToProps,  
+    mapDispatchToProps
+)(SearchBar);
