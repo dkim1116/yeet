@@ -2,7 +2,8 @@ import { GetRecent, SearchPhoto } from '../apis/flickr';
 import {
     GET_RECENT,
     SEARCH_PHOTO,
-    ON_TYPE
+    HANDLE_SEARCH_TERM_CHANGE,
+    HANDLE_SEARCH_TERM_SUBMIT
 } from './types';
 
 export const getRecent = () => async dispatch => {
@@ -17,6 +18,10 @@ export const searchPhoto = (term) => async dispatch => {
     dispatch({ type: SEARCH_PHOTO, payload: response.data.photos.photo});
 };
 
-export const onType = (term) => dispatch => {
-    dispatch({ type: ON_TYPE, payload: term });
+export const onSearchTermChange = (term) => dispatch => {
+    dispatch({ type: HANDLE_SEARCH_TERM_CHANGE, payload: term });
+};
+
+export const onSearchTermSubmit = (term) => dispatch => {
+    dispatch({ type: HANDLE_SEARCH_TERM_SUBMIT, payload: term });
 };

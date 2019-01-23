@@ -1,6 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { searchPhoto, onType } from '../actions';
+import { 
+    searchPhoto, 
+    onSearchTermChange
+} from '../actions';
 
 class SearchBar extends React.Component {
     constructor(props) {
@@ -10,7 +13,7 @@ class SearchBar extends React.Component {
     onSearchChange = (event) => {
         event.preventDefault();
 
-        this.props.onType(event.target.value);
+        this.props.onSearchTermChange(event.target.value);
     }
 
     onSearchSubmit = (event) => {
@@ -21,7 +24,11 @@ class SearchBar extends React.Component {
 
     render() {
         return (
-            <form className="ui medium">
+            <form 
+                className="ui medium" 
+                onSubmit={
+                    this.props.onSearchSubmit(this.props.submitTerm)
+                }>
                 <div className="ui fluid search">
                     <div className="ui icon input">
                         <input 
@@ -40,7 +47,11 @@ class SearchBar extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    return { photos: state.photos, searchTerm: state.searchTerm };
+    return { photos: state.photos, searchTerm: state.searchTerm, submitTerm: state.submitTerm };
 }
 
-export default connect(mapStateToProps, { searchPhoto, onType })(SearchBar);
+export default connect
+(mapStateToProps, { 
+    searchPhoto, 
+    onSearchTermChange,
+})(SearchBar);

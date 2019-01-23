@@ -1,8 +1,12 @@
 import { combineReducers } from 'redux';
 import photoReducer from './photoReducer';
-import typeReducer from './typeReducer';
+import { 
+    searchTermReducer,
+    submitTermReducer
+} from './searchTermReducer';
 
 export default combineReducers({
     photos: photoReducer,
-    searchTerm: typeReducer
+    searchTerm: searchTermReducer,
+    submitTerm: submitTermReducer
 });

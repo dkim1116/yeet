@@ -1,3 +1,4 @@
 export const GET_RECENT = 'GET_RECENT';
 export const SEARCH_PHOTO = 'SEARCH_PHOTO';
-export const ON_TYPE = 'ON_TYPE';
+export const HANDLE_SEARCH_TERM_CHANGE = 'ON_SEARCH_TYPE';
+export const HANDLE_SEARCH_TERM_SUBMIT = 'ON_SEARCH_SUBMIT';
