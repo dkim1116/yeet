@@ -37,9 +37,7 @@ class Header extends React.Component {
     };
 
     renderAuthButton() {
-        if (this.props.isSignedIn === null) {
-            return null;
-        } else if (this.props.isSignedIn) {
+        if (this.props.isSignedIn) {
             return (
             <button onClick={this.onSignOutClick} className="ui red google button">
                 <i className="google icon" />
@@ -78,8 +76,7 @@ class Header extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        isSignedIn: state.isSignedIn,
-        userId: state.userId
+        isSignedIn: state.googleAuth.isSignedIn
     };
 }
 
