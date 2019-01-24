@@ -4,7 +4,7 @@ const ImageDetail = (props) => {
 
     const imageSrcRef = (id, farm, server, secret) => {
         return `https://farm${farm}.staticflickr.com/${server}/${id}_${secret}.jpg`;
-    }
+    };
 
     return (
         <div className="column">
@@ -23,7 +23,7 @@ const ImageDetail = (props) => {
             </div>
         </div>
     );
-}
+};
 
  
 export default ImageDetail;

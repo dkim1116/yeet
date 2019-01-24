@@ -1,6 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getRecent } from '../../actions';
+import { 
+    getRecent,
+    onSearchTermSubmit
+} from '../../actions';
 
 import SearchBar from '../SearchBar';
 import ImageDetail from './ImageDetail';
@@ -25,7 +28,7 @@ class ImageList extends React.Component {
                     secret={photo.secret} 
                     title={photo.title}/>
             );
-        })
+        });
     }
 
     render() {
@@ -39,10 +42,11 @@ class ImageList extends React.Component {
                 <div className="ui menu">
                     <div className="item">
                         Retrieved for: 
-                        {this.props.searchTerm ? this.props.searchTerm : " Recent Uploads"}
+                        {this.props.submitTerm ? 
+                            this.props.submitTerm : " Recent Uploads"}
                     </div>
                     <div className="right item">
-                        <SearchBar />
+                        <SearchBar onSearchSubmit={this.props.onSearchTermSubmit}/>
                     </div>
                 </div>
                 <div className="ui top attached tabular menu">
@@ -57,10 +61,23 @@ class ImageList extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    return { photos: state.photos, searchTerm: state.searchTerm};
-}
+    return { 
+        photos: state.photos, 
+        searchTerm: state.searchTerm, 
+        submitTerm: state.submitTerm 
+    };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+    getRecent: () => {
+        dispatch( getRecent() );
+    },
+    onSearchTermSubmit: (term) => {
+        dispatch( onSearchTermSubmit(term) );
+    }
+});
 
 export default connect(
     mapStateToProps,
-    { getRecent } 
+    mapDispatchToProps
 )(ImageList);
