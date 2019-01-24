@@ -1,14 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { googleSignIn, googleSignOut } from '../actions';
+import { GOOGLE_AUTH_PUBLIC } from '../apis/constants';
 
 class Header extends React.Component {
     componentDidMount() {
         window.gapi.load('client:auth2', () => {
           window.gapi.client
             .init({
-              clientId:
-              '235133278787-1hg8blc38hjs4f0kg4auamesd3k194m1.apps.googleusercontent.com',
+              clientId: GOOGLE_AUTH_PUBLIC,
               scope: 'email'
             })
             .then(() => {
@@ -66,9 +66,10 @@ class Header extends React.Component {
                     <a className="item">
                         Yeets
                     </a>
-                </div>
-                <div>
-                    {this.renderAuthButton()}
+                    
+                    <a className="right item">
+                        {this.renderAuthButton()}
+                    </a>
                 </div>
             </div>
         );
