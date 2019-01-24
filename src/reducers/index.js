@@ -4,9 +4,11 @@ import {
     searchTermReducer,
     submitTermReducer
 } from './searchTermReducer';
+import googleAuthReducer from './googleAuthReducer';
 
 export default combineReducers({
     photos: photoReducer,
     searchTerm: searchTermReducer,
-    submitTerm: submitTermReducer
+    submitTerm: submitTermReducer,
+    googleAuth: googleAuthReducer
 });
