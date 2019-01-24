@@ -1,4 +1,4 @@
-#Yeet
+# Yeet
 
 ## Available Scripts
 
