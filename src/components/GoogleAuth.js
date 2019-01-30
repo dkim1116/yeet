@@ -37,6 +37,7 @@ class GoogleAuth extends React.Component {
     };
 
     onSignOutClick = () => {
+        console.log('sign out clicked')
         this.auth.signOut();
     };
 
@@ -75,11 +76,11 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         googleSignIn: (userId) => {
-            console.log(userId)
             dispatch(googleSignIn(userId))
         },
         googleSignOut: () => {
-            dispatch(googleSignOut)
+            console.log('dispatch to props sign out')
+            dispatch(googleSignOut())
         }
     }
 };

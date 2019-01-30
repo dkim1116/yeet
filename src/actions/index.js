@@ -33,5 +33,6 @@ export const googleSignIn = (userId) => dispatch => {
 };
 
 export const googleSignOut = () => dispatch => {
+    console.log('@@@@@@@@@@@@@@@@@@@@')
     dispatch({ type: GOOGLE_SIGNOUT });
 };
