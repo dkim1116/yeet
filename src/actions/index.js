@@ -28,15 +28,10 @@ export const onSearchTermSubmit = (term) => dispatch => {
     dispatch({ type: HANDLE_SEARCH_TERM_SUBMIT, payload: term });
 };
 
-export const googleSignIn = (userId) => {
-    return {
-        type: GOOGLE_SIGNIN,
-        payload: userId
-      };
+export const googleSignIn = (userId) => dispatch => {
+    dispatch({ type: GOOGLE_SIGNIN, payload: userId });
 };
 
-export const googleSignOut = () => {
-    return {
-        type: GOOGLE_SIGNOUT
-    };
+export const googleSignOut = () => dispatch => {
+    dispatch({ type: GOOGLE_SIGNOUT });
 };
