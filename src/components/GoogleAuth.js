@@ -21,13 +21,9 @@ class GoogleAuth extends React.Component {
     }
 
     onAuthChange = isSignedIn => {
-        console.log('inside auth change ' + isSignedIn);
         if (isSignedIn) {
-            console.log('inside auth change ' + isSignedIn);
-            console.log(this.props.googleSignIn)
             this.props.googleSignIn(this.auth.currentUser.get().getId());
         } else {
-            console.log('inside auth change ' + isSignedIn);
             this.props.googleSignOut();
         }
     };
@@ -37,7 +33,6 @@ class GoogleAuth extends React.Component {
     };
 
     onSignOutClick = () => {
-        console.log('sign out clicked')
         this.auth.signOut();
     };
 
@@ -79,7 +74,6 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(googleSignIn(userId))
         },
         googleSignOut: () => {
-            console.log('dispatch to props sign out')
             dispatch(googleSignOut())
         }
     }
