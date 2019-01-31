@@ -13,7 +13,7 @@ class GoogleAuth extends React.Component {
             })
             .then(() => {
               this.auth = window.gapi.auth2.getAuthInstance();
-    
+
               this.onAuthChange(this.auth.isSignedIn.get());
               this.auth.isSignedIn.listen(this.onAuthChange);
             });
@@ -62,21 +62,14 @@ class GoogleAuth extends React.Component {
         );
     }
 }
-const mapStateToProps = (state) => {
-    return {
-        isSignedIn: state.googleAuth.isSignedIn
-    };
-}
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        googleSignIn: (userId) => {
-            dispatch(googleSignIn(userId))
-        },
-        googleSignOut: () => {
-            dispatch(googleSignOut())
-        }
-    }
-};
+const mapStateToProps = ({googleAuth: {isSignedIn}}) => ({
+  isSignedIn
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  googleSignIn: (userId) => dispatch(googleSignIn(userId)),
+  googleSignOut: () => dispatch(googleSignOut())
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(GoogleAuth);
