@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { 
-    searchPhoto, 
+import {
+    searchPhoto,
     onSearchTermChange
 } from '../actions';
 
@@ -11,32 +11,31 @@ class SearchBar extends React.Component {
     }
 
     onSearchChange = (event) => {
+        const { onSearchTermChange } = this.props;
         event.preventDefault();
-
-        this.props.onSearchTermChange(event.target.value);
+        onSearchTermChange(event.target.value);
     }
 
     onSearchSubmit = (event) => {
+        const { searchTerm, searchPhoto } = this.props;
         event.preventDefault();
-
-        this.props.searchPhoto(this.props.searchTerm);
+        searchPhoto(searchTerm);
     }
 
     render() {
+        const { searchTerm } = this.props;
         return (
-            <form 
-                className="ui medium" 
-                onSubmit={
-                    this.props.onSearchSubmit(this.props.submitTerm)
-                }>
+            <form
+                className="ui medium"
+                onSubmit={this.onSearchSubmit}>
                 <div className="ui fluid search">
                     <div className="ui icon input">
-                        <input 
-                            className="prompt" 
-                            type="text" 
-                            placeholder="Search..." 
+                        <input
+                            className="prompt"
+                            type="text"
+                            placeholder="Search..."
                             onChange={this.onSearchChange}
-                            value={this.props.searchTerm}/>
+                            value={searchTerm}/>
                         <i className="search icon"></i>
                     </div>
                     <div className="results"></div>
@@ -46,24 +45,18 @@ class SearchBar extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return { 
-        photos: state.photos, 
-        searchTerm: state.searchTerm, 
-        submitTerm: state.submitTerm 
-    };
-};
+const mapStateToProps = (state) => ({
+  photos: state.photos,
+  searchTerm: state.searchTerm,
+  submitTerm: state.submitTerm
+});
 
 const mapDispatchToProps = (dispatch) => ({
-    searchPhoto: (term) => {
-        dispatch( searchPhoto(term) );
-    },
-    onSearchTermChange: (term) => {
-        dispatch( onSearchTermChange(term) );
-    }
+  searchPhoto: (term) => dispatch(searchPhoto(term)),
+  onSearchTermChange: (term) => dispatch(onSearchTermChange(term))
 });
 
 export default connect(
-    mapStateToProps,  
-    mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(SearchBar);
