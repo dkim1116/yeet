@@ -45,10 +45,10 @@ class SearchBar extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => ({
-  photos: state.photos,
-  searchTerm: state.searchTerm,
-  submitTerm: state.submitTerm
+const mapStateToProps = ({ photos, searchTerm, submitTerm }) => ({
+  photos,
+  searchTerm,
+  submitTerm
 });
 
 const mapDispatchToProps = (dispatch) => ({
