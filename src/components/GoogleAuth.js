@@ -28,25 +28,25 @@ class GoogleAuth extends React.Component {
         }
     };
 
-    onSignInClick = () => {
+    handleSignInClick = () => {
         this.auth.signIn();
     };
 
-    onSignOutClick = () => {
+    handleSignOutClick = () => {
         this.auth.signOut();
     };
 
     renderAuthButton() {
         if (this.props.isSignedIn) {
             return (
-            <button onClick={this.onSignOutClick} className="ui red google button">
+            <button onClick={this.handleSignOutClick} className="ui red google button">
                 <i className="google icon" />
                 Sign Out
             </button>
             );
         } else {
             return (
-            <button onClick={this.onSignInClick} className="ui red google button">
+            <button onClick={this.handleSignInClick} className="ui red google button">
                 <i className="google icon" />
                 Sign In with Google
             </button>
@@ -62,21 +62,11 @@ class GoogleAuth extends React.Component {
         );
     }
 }
-const mapStateToProps = (state) => {
-    return {
-        isSignedIn: state.googleAuth.isSignedIn
-    };
-}
+const mapStateToProps = ({ googleAuth: { isSignedIn } }) => ({ isSignedIn });
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        googleSignIn: (userId) => {
-            dispatch(googleSignIn(userId))
-        },
-        googleSignOut: () => {
-            dispatch(googleSignOut())
-        }
-    }
-};
+const mapDispatchToProps = (dispatch) => ({
+    googleSignIn: (userId) => dispatch(googleSignIn(userId)),
+    googleSignOut: () => dispatch(googleSignOut())
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(GoogleAuth);
